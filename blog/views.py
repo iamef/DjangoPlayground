@@ -1,3 +1,4 @@
+# the logic of the application
 from django.shortcuts import render
 
 # Create your views here.
