@@ -6,5 +6,15 @@
 </head>
 <body>
     <p>Happy day!</p>
+    
+    {% for post in posts %}
+        <div>
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.published_date }}</p>
+            <p>{{ post.text }}</p>
+        </div>
+        
+        <br/>
+    {% endfor %}
 </body>
 </html>
