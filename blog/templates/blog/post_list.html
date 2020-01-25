@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Django Blog!</title>
 </head>
 <body>
     <p>Happy day!</p>
-    
+
+    <p> {{ posts | length }} </p>
+
     {% for post in posts %}
         <div>
-            <h1>{{ post.title }}</h1>
+            <h1> <a href=""> {{ post.title }}</a> </h1>
             <p>{{ post.published_date }}</p>
             <p>{{ post.text }}</p>
         </div>
