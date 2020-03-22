@@ -26,6 +26,27 @@ def post_new(request):
 
             return redirect('post_detail', pk=post.pk)
 
-    # should we have an else statement
-    form = PostForm
+    else:
+        form = PostForm
+
+    return render(request, 'blog/post_edit.html', {'form': form})
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+
+        # TODO this code seems to be repetitive
+        if form.is_valid():
+            post = form.save(commit=False)  # since we don't want to save the post just yet
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()  # preserve the changes and publish the blog post
+
+            return redirect("post_detail", pk=post.pk)
+
+    else:
+        form = PostForm(instance=post)
+
     return render(request, 'blog/post_edit.html', {'form': form})
